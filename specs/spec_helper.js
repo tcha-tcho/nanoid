@@ -1,74 +1,86 @@
 process.env.NODE_ENV = process.env.NODE_ENV || "test"
 
+var url_conn = "https://boveriesepeoverationesma:vnJTbtSRtDcfPivvUuCUmqts@jaobi.cloudant.com:443/dev/"
+
+// var Model = require('../lib/index')
+// Model.create_connection(url_conn);
+ 
+// var User = Model.define('User', {
+//   name: String
+//   ,surname: {type: String, default: "Rambo"}
+// })
+
+
+// User.find("teste", function (err, user) {
+//   console.log(user)
+//   user.remove(function(x){
+//     console.log(x)
+//   })
+//   // do something with the blog post
+// });
+
+
+
+
+
+
+
+
+
+
+
+  // // var db = require("nano")("https://boveriesepeoverationesma:vnJTbtSRtDcfPivvUuCUmqts@jaobi.cloudant.com:5984/dev/");
+  // var db = require("nano")("https://boveriesepeoverationesma:vnJTbtSRtDcfPivvUuCUmqts@jaobi.cloudant.com:443/dev/");
+  // // var db = nano.use("dev");
+
+  // // db.merge({"test":(new Date().getTime())},"alice",function(x){
+  // //   console.log(x)
+  // // });
+  // db.get("alice", function (e,b,h) {
+  //   console.log(e,b,h);
+  //   return;
+  // });
+
+
+
+
+
+
+
+
 var db_connection = require('../lib/connection.js'),
-    // cradle = require('cradle'),
     async = require('async');
 
 if (process.env.NODE_ENV === "te1st") {
   db_connection.create_connection('lazyboy_tests');
 } else {
-  // db_connection.create_connection({url: 'https://garrensmith.cloudant.com', port: '443', cache: true, secure:true, db:'lazyboy_tests'});
-
- db_connection.create_connection({
-    auth: { // not required
-      username: 'boveriesepeoverationesma',
-      password: 'vnJTbtSRtDcfPivvUuCUmqts'
-    }
-    ,url:'https://jaobi.cloudant.com'
-    ,db: 'dev'
-    ,port: '443'
-    ,cache: true
-    ,secure:true
-  });
-
+  db_connection.create_connection(url_conn);
 }
 
 var db = module.exports.db = db_connection.connection(); 
 
 
-
-
-
-// var Model = require('../lib/index')
-var url_conn = "https://boveriesepeoverationesma:vnJTbtSRtDcfPivvUuCUmqts@jaobi.cloudant.com:443/dev/"
-// Model.create_connection(url_conn);
-
-
-
-var User = Model.define('User', {
-  name: String
-  ,surname: {type: String, default: "Rambo"}
-})
-
-// var user = User.create({_id:"teste", name: "John", surname: "Rambo"});
-
-// user.save(function (err, saved_user) {
-//   console.log(err)
-//   // console.log(saved_user)
-// })
-
-
-User.find("teste", function (err, user) {
-  console.log(user)
-  user.remove(function(x){
-    console.log(x)
-  })
-  // do something with the blog post
-});
-
-
-
 before(function(done) {
-
   console.log("cleaning db");
 
   db.get('_all_docs', function (err, res) {
+    if (res && res.rows && res.rows.length) {
 
-    async.forEach(JSON.parse(res), function (item, cb) {
-      db.remove(item.id, item.value.rev, function (err, res) {cb();});
-    }, function () {
+      res.rows.forEach(function (item, index) {
+        var items = res.rows.length;
+        console.log("removing item (" +item.id+ " / rev: "+item.value.rev+") - " + (index + 1) + " of " + res.rows.length);
+        db.destroy(item.id, item.value.rev, function (err, res) {
+          if (err) console.log(err)
+          if (index == (items - 1)) {
+            console.log("ready")
+            done();
+          };
+        });
+
+      });
+    } else {
       done();
-    });
+    };
 
   });
 });

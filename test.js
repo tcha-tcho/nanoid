@@ -25,10 +25,10 @@ var User = Model.define('User', {
 // })
 
 
-User.find("teste", function (err, user) {
-  console.log(user)
-  user.remove(function(x){
-    console.log(x)
-  })
-  // do something with the blog post
-});
+// User.find("teste", function (err, user) {
+//   console.log(user)
+//   user.remove(function(x){
+//     console.log(x)
+//   })
+//   // do something with the blog post
+// });
