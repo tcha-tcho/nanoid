@@ -1,0 +1,34 @@
+{
+  "author": "Tcha-Tcho <tchatcho66@gmail.com> (http://www.github.com/tcha-tcho)",
+  "name": "nanoid",
+  "description": "A mini object document mapper for couchdb based on nano",
+  "keywords": ["Couchdb", "db", "ORM", "ODM", "couch"],
+  "version": "0.0.1",
+  "homepage": "http://github.com/tcha-tcho/nanoid",
+
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tcha-tcho/nanoid.git"
+  },
+
+  "main": "lib/index.js",
+
+  "engines": {
+    "node": ">0.8.0"
+  },
+
+  "scripts": {
+    "test": "make test"
+  },
+
+  "dependencies": {
+    "nano": ">=4.1.1",
+    "async":">=0.1.9",
+    "validator": ">=0.3.4"
+    },
+
+  "devDependencies": {
+      "mocha": "*",
+     "should": "*"
+    }
+}
