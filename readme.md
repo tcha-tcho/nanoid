@@ -1,10 +1,10 @@
 Nanoid Object Modeller
 =======================
-[![Build Status](https://secure.travis-ci.org/tcha-tcho/nanoid.png)](http://travis-ci.org/tcha-tcho/nanoid)
+<!-- [![Build Status](https://secure.travis-ci.org/tcha-tcho/nanoid.png)](http://travis-ci.org/tcha-tcho/nanoid) -->
 
 # Don't panic!
 
-LazyBoy makes it easier to build applications with Couchdb. It removes the repeatable cruft and makes working with Couchdb as fun as it should be.
+Nanoid makes it easier to build applications with Couchdb. It removes the repeatable cruft and makes working with Couchdb as fun as it should be.
 
 # 4 easy steps to installation
 
