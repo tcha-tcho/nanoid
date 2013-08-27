@@ -25,7 +25,6 @@ describe("Custom views", function () {
 
 
     Model.load(function () {
-
       var Album = Model('Album');
       Album.create({band: "Incubus", rating: 5, title: "Fungus Amongus"}).save();
       Album.create({band: "Incubus", rating: 3, title: "S.C.I.E.N.C.E."}).save(); 

@@ -65,19 +65,22 @@ before(function(done) {
 
   db.get('_all_docs', function (err, res) {
     if (res && res.rows && res.rows.length) {
-
-      res.rows.forEach(function (item, index) {
-        var items = res.rows.length;
-        console.log("removing item (" +item.id+ " / rev: "+item.value.rev+") - " + (index + 1) + " of " + res.rows.length);
-        db.destroy(item.id, item.value.rev, function (err, res) {
-          if (err) console.log(err)
-          if (index == (items - 1)) {
-            console.log("ready")
-            done();
-          };
-        });
-
-      });
+      var count = 0;
+      function remove_item() {
+        if (count < res.rows.length) {
+          var item = res.rows[count];
+          console.log("removing item (" +item.id+ " / rev: "+item.value.rev+") - " + (count + 1) + " of " + res.rows.length);
+          db.destroy(item.id, item.value.rev, function (err, res) {
+            if (err) console.log(err)
+            count ++;
+            remove_item();
+          });
+        } else {
+          console.log("ready")
+          done();
+        };
+      };
+      remove_item();
     } else {
       done();
     };

@@ -17,11 +17,10 @@ describe("Find document by Id", function () {
   it("Should find saved document by id", function (done) {
     var user_doc = {
       id : "test-user-id",
-    name: "garren"
+      name: "garren"
     };
 
-    db.save(user_doc.id, user_doc, function (err, req) {
-
+    db.insert(user_doc, user_doc.id, function (err, req) {
       User.find(user_doc.id, function (err, user) {
         user.id.should.equal(user_doc.id);
         user.name.should.equal("garren");
@@ -41,7 +40,6 @@ describe("Find document by Id", function () {
   it("Should contain update and created date", function (done) {
     User.create({name:"John Rambo"}).save(function (err, user) {
       User.find(user.id, function (err, find_user) {
-
         var current_date = new Date();
         find_user.dateCreated.getHours().should.equal(current_date.getHours());
         find_user.lastUpdated.getHours().should.equal(current_date.getHours());

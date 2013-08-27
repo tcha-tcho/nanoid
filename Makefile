@@ -6,7 +6,7 @@ site:
 		&& echo "done"
 
 test:
-	mocha specs/* --reporter spec --require should --ignore-leaks --timeout 20000
+	mocha specs/* --reporter spec --require should --ignore-leaks --timeout 50000
 
 
 .PHONY: site

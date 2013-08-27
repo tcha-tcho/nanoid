@@ -24,7 +24,6 @@ describe("Custom views", function () {
 
 
     Model.load(function () {
-
       RankingThing.create({name: "Thing1", rank: 5}).save();
       RankingThing.create({name: "Thing2", rank: 1}).save(); 
       RankingThing.create({name: "Thing3", rank: 3}).save();
@@ -40,16 +39,12 @@ describe("Custom views", function () {
 
   it("Should have chainable start and end key", function (done) {
     var RankingThing = Model('RankingThing');
-    RankingThing.view('ByRankAndName',function(err,docs){
-      console.log(err)
-      if (err) console.log(err.description);
-    })
-    // RankingThing.view('ByRankAndName')
-    //   .startkey([2, "Thing"])
-    //   .endkey([3, {}], function (err, things) {
-    //     things.length.should.equal(3);
-    //     done();
-    // });
+    RankingThing.view('ByRankAndName')
+      .startkey([2, "Thing"])
+      .endkey([3, {}], function (err, things) {
+        things.length.should.equal(3);
+        done();
+    });
   });
 
   it("Should descend", function (done) {
