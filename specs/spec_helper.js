@@ -60,24 +60,32 @@ if (process.env.NODE_ENV === "te1st") {
 var db = module.exports.db = db_connection.connection(); 
 
 
+
+
 before(function(done) {
   console.log("cleaning db");
 
   db.get('_all_docs', function (err, res) {
     if (res && res.rows && res.rows.length) {
       var count = 0;
+      var removed = 0;
+      var length = res.rows.length;
       function remove_item() {
         if (count < res.rows.length) {
           var item = res.rows[count];
           console.log("removing item (" +item.id+ " / rev: "+item.value.rev+") - " + (count + 1) + " of " + res.rows.length);
           db.destroy(item.id, item.value.rev, function (err, res) {
             if (err) console.log(err)
-            count ++;
-            remove_item();
+            removed ++;
+            if (removed == length) {
+              console.log("ready!")
+              done();
+            }
           });
+          count ++;
+          remove_item();
         } else {
-          console.log("ready")
-          done();
+          console.log("waiting removes...")
         };
       };
       remove_item();
