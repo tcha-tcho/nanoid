@@ -8,7 +8,7 @@ describe("Model Validations", function () {
   before(function (done) {
     var Mailer = Model.define("Mailer", {
       name: String,
-        email: String
+      email: String
     });
 
     Model.define("MailerZ", {

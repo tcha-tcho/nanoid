@@ -1,58 +1,30 @@
 process.env.NODE_ENV = process.env.NODE_ENV || "test"
 
-var url_conn = "https://boveriesepeoverationesma:vnJTbtSRtDcfPivvUuCUmqts@jaobi.cloudant.com:443/dev/"
-
-// var Model = require('../lib/index')
-// Model.create_connection(url_conn);
- 
-// var User = Model.define('User', {
-//   name: String
-//   ,surname: {type: String, default: "Rambo"}
-// })
-
-
-// User.find("teste", function (err, user) {
-//   console.log(user)
-//   user.remove(function(x){
-//     console.log(x)
-//   })
-//   // do something with the blog post
-// });
+////////////////////////////////////////////////////////////
+var url_conn = "supply here"
+////////////////////////////////////////////////////////////
 
 
 
 
-
-
-
-
-
-
-
-  // // var db = require("nano")("https://boveriesepeoverationesma:vnJTbtSRtDcfPivvUuCUmqts@jaobi.cloudant.com:5984/dev/");
-  // var db = require("nano")("https://boveriesepeoverationesma:vnJTbtSRtDcfPivvUuCUmqts@jaobi.cloudant.com:443/dev/");
-  // // var db = nano.use("dev");
-
-  // // db.merge({"test":(new Date().getTime())},"alice",function(x){
-  // //   console.log(x)
-  // // });
-  // db.get("alice", function (e,b,h) {
-  //   console.log(e,b,h);
-  //   return;
-  // });
-
-
-
-
-
-
-
+if (url_conn == "supply here") {
+  console.log("\n\n")
+  console.log("---------------------------------------------------------------------------------------")
+  console.log("'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''\n")
+  console.log("PLEASE, on /specs/spec_helper.js supply your database connection string on 'url_conn'")
+  console.log("something like this:")
+  console.log("https://boveriesepeoverationesma:vnJTbtSRtDcfPiVvUXCUXqts@example.cloudant.com:443/dev/")
+  console.log("\n.......................................................................................")
+  console.log("---------------------------------------------------------------------------------------")
+  console.log("\n\n")
+  return false;
+};
 
 var db_connection = require('../lib/connection.js'),
     async = require('async');
 
 if (process.env.NODE_ENV === "te1st") {
-  db_connection.create_connection('lazyboy_tests');
+  db_connection.create_connection('nanoid_tests');
 } else {
   db_connection.create_connection(url_conn);
 }

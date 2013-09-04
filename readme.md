@@ -100,7 +100,8 @@ Logging has been disabled for now.
 * Improved logging
 
 #Changelog
-* 25 Aug 2013 - Add First Implementation
+* 25 Aug 2013 - Add First Implementation based on LazyBoy created by [Garren Smith](https://github.com/garrensmith/LazyBoy)
 
 #Contributors
-
+Tcha-Tcho
+Bruno Agutoli

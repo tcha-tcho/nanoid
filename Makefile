@@ -8,7 +8,7 @@ site:
 
 test:
 ifeq ($(file),)
-	@echo "Also use file /specs/..."
+	@echo "Also use file=/specs/..."
 	@echo "Starting..."
 	mocha specs/* --reporter spec --require should --ignore-leaks --timeout 50000
 else
