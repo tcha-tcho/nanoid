@@ -2,7 +2,7 @@ Nanoid Object Modeller
 =======================
 <!-- [![Build Status](https://secure.travis-ci.org/tcha-tcho/nanoid.png)](http://travis-ci.org/tcha-tcho/nanoid) -->
 
-# Don't panic!
+## Don't panic!
 
 Nanoid makes it easier to build applications with Couchdb. It removes the repeatable cruft and makes working with Couchdb as fun as it should be.
 
@@ -104,4 +104,5 @@ Logging has been disabled for now.
 
 #Contributors
 Tcha-Tcho
+
 Bruno Agutoli
