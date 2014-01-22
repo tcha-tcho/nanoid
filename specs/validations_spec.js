@@ -23,9 +23,9 @@ describe("Model Validations", function () {
   it("Should send error to callback length of email property to small", function (done) {
     var Mailer = Model('Mailer');
 
-    Mailer.validate(function (check, item) {
-      check(item.email).isEmail();
-      check(item.name).len(0,30);
+    Mailer.validate(function (check_if, item) {
+      check_if(["isEmail","Invalid email"],item.email);
+      check_if("isLength",item.name, 0,30);
     });
 
     var mail1 = Mailer.create({name: "Garren", email: "Boom"});
@@ -42,9 +42,9 @@ describe("Model Validations", function () {
   it("Should not save model to db if validation fails", function (done) {
     var Mailer = Model('Mailer');
 
-    Mailer.validate(function (check, item) {
-      check(item.email).isEmail();
-      check(item.name).len(0,30);
+    Mailer.validate(function (check_if, item) {
+      check_if(["isEmail","Invalid email"],item.email);
+      check_if("isLength",item.name, 0,30);
     });
 
     var mail1 = Mailer.create({name: "Harris", email: "Boom"});
@@ -76,16 +76,13 @@ describe("Model Validations", function () {
   it("Should return list of validation errors", function (done) {
 
     var Mailer = Model('Mailer');
-    Mailer.validate(function (check, item) {
-
-      check(item.name).len(10,30);
-      check(item.email).isEmail();
-
+    Mailer.validate(function (check_if, item) {
+      check_if("isEmail",item.email);
+      check_if("isLength",item.name, 10,30);
     });
 
     var mail1 = Mailer.create({name: "Harris", email: "Boom"});
     mail1.save(function (err, item) {
-
       err.length.should.equal(2);
       done();
     });
@@ -94,7 +91,7 @@ describe("Model Validations", function () {
 
   it("Should return an array of error if exception occurs in validation", function () {
     var Mailer = Model('Mailer');
-    Mailer.validate(function (check, item) {
+    Mailer.validate(function (check_if, item) {
       throw "Weird error here" 
     });
 

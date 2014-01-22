@@ -12,9 +12,9 @@ Validations are done using a very good validation library: [node-validation](htt
 
       var Mailer = Model('Mailer');
 
-      Mailer.validate(function (check, item) {
-        check(item.email).isEmail();
-        check(item.name).len(0,30);
+      Mailer.validate(function (check_if, item) {
+        check_if("isEmail",item.email);
+        check_if("isLength",item.name, 0,30);
       });
 
 

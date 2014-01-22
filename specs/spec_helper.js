@@ -1,7 +1,7 @@
 process.env.NODE_ENV = process.env.NODE_ENV || "test"
 
 ////////////////////////////////////////////////////////////
-var url_conn = "supply here"
+var url_conn = "https://turtseephybraormamearkso:aAYnHO7TAcEdiCKLObnw5sXW@timets.cloudant.com:443/testing/"
 ////////////////////////////////////////////////////////////
 
 
