@@ -55,7 +55,9 @@ before(function(done) {
                 if (checker < 3) {
                   checker ++;
                   console.log("checking again... " + checker)
-                  remove_all();
+                  setTimeout(function(){
+                    remove_all();
+                  },1000)
                 } else {
                   console.log("removed!")
                   done();
@@ -73,7 +75,9 @@ before(function(done) {
         if (checker < 3) {
           checker ++;
           console.log("checking again... " + checker)
-          remove_all();
+          setTimeout(function(){
+            remove_all();
+          },1000)
         } else {
           console.log("ready! ok")
           done();
